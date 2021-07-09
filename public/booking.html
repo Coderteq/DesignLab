@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Co Care</title>
+
+    <!--== Favicon ==-->
+    <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon" />
+
+    <!--== Google Fonts ==-->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;0,900;1,300;1,400&display=swap" rel="stylesheet">
+
+    <!-- build:css assets/css/app.min.css -->
+    <!--== jqvmap Min CSS ==-->
+    <link href="assets/css/jqvmap.min.css" rel="stylesheet" />
+    <!--== ChartJS Min CSS ==-->
+    <link href="assets/css/chart.min.css" rel="stylesheet" />
+    <!--== DataTables Min CSS ==-->
+    <link href="assets/css/datatables.min.css" rel="stylesheet" />
+    <!--== Select2 Min CSS ==-->
+    <link href="assets/css/select2.min.css" rel="stylesheet" />
+    <!--== Bootstrap Min CSS ==-->
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!--== Main Style CSS ==-->
+    <link href="assets/css/style.css" rel="stylesheet" />
+    <!-- endbuild -->
+
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="//oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script src="/__/firebase/7.16.1/firebase-app.js"></script>
+    <script src="/__/firebase/7.16.1/firebase-auth.js"></script>
+    <script src="/__/firebase/7.16.1/firebase-firestore.js"></script>
+    <script src="/__/firebase/7.16.1/firebase-functions.js"></script>
+    <script src="/__/firebase/7.16.1/firebase-analytics.js"></script>
+    <script src="/__/firebase/7.16.1/firebase-database.js"></script>
+    <script src="/__/firebase/7.16.1/firebase-storage.js"></script>
+    <script src="/__/firebase/init.js"></script>
+
+    <script src="/__/firebase/7.16.1/firebase-messaging.js"></script>
+</head>
+
+<body>
+    <!--== Start Header Wrapper ==-->
+    <header class="header-wrapper">
+        <div class="container">
+            <div class="row justify-content-between align-items-center">
+                <div class="col-lg-4">
+                    <div class="logo-wrap">
+                        <a href="index.html"><img src="assets/img/logo.png" alt="logo" /></a>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4">
+                    <div class="last-update-wrap">
+                        <p class="mb-0">Update: <span class="last-update"></span></p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4">
+                    <div class="navbar-wrap">
+                        <nav class="menubar">
+                            <ul class="nav">
+                                <li><a href="index.html">Dashboard</a></li>
+                                <li><a href="map.html">Map</a></li>
+                                <li><a href="badge.html">Badge</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!--== End Header Wrapper ==-->
+
+    <!--== Start Main Content Wrapper ==-->
+    <main class="main-content-wrapper">
+        <div class="badge-tracker-wrap">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-9 m-auto">
+                        <div class="badge-tracker-item">
+                            <div class="title-top">
+                                <h2>Your Status</h2>
+                            </div>
+
+                            <div class="badge-content-wrapper">
+                                <!-- Badge Item 01 -->
+
+
+                                <!-- Badge Item 05 -->
+                                <div class="badge-item badge-bg-yellow worldwide-stats">
+                                    <div class="badge-item__title badge-item__title--3 badge-title-bg-black">
+                                        <p>Supravo J.</p>
+                                    </div>
+                                    <div class="badge-item__body">
+                                        <div class="badge-item__block">
+                                            <p>ID: <span>2705634
+                                                </span></p>
+                                        </div>
+                                        <div class="badge-item__block">
+                                            <p>Status: <span>Accepted</span></p>
+                                        </div>
+
+                                        <div class="badge-item__block">
+                                            <p>Booking Date: <span>10.07.2021, 3-4pm</span></p>
+                                        </div>
+                                        <div class="badge-item__block">
+                                            <p>Booking Place: <span>Apollo, Ultadanga</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Badge Item 05 -->
+                            </div>
+
+                        </div>
+                        <div class="badge-tracker-item">
+                            <div class="title-top">
+                                <h2>Hospital Status</h2>
+                            </div>
+                        </div>
+
+                        <div class="list-view table-responsive">
+
+                            <table id="table" class="list-view__table display table">
+                                <thead class="list-view__head">
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>City</th>
+                                        <th>Vaccines Available</th>
+                                        <th>Next Available Slot</th>
+                                        <th>Address</th>
+                                        <th>Contact</th>
+
+                                    </tr>
+                                </thead>
+
+                                <tbody id="table-body" class="list-view__body">
+                                    <!-- <tr>
+                                        <td>Apollo</td>
+                                        <td>Kolkata</td>
+                                        <td>1936</td>
+                                        <td>19.07.2021</td>
+                                        <td>48/1F, Leela Roy Sarani, Gariahat Rd, Kolkata, West Bengal 700019</td>
+                                        <td>033 2461 9482</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Apollo</td>
+                                        <td>Kolkata</td>
+                                        <td>1936</td>
+                                        <td>19.07.2021</td>
+                                        <td>48/1F, Leela Roy Sarani, Gariahat Rd, Kolkata, West Bengal 700019</td>
+                                        <td>033 2461 9482</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Apollo</td>
+                                        <td>Kolkata</td>
+                                        <td>1936</td>
+                                        <td>19.07.2021</td>
+                                        <td>48/1F, Leela Roy Sarani, Gariahat Rd, Kolkata, West Bengal 700019</td>
+                                        <td>033 2461 9482</td>
+                                    </tr> -->
+
+                                </tbody>
+                            </table>
+                        </div>
+
+
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal -->
+
+    </main>
+    <!--== End Main Content Wrapper ==-->
+
+
+    <!--=======================Javascript============================-->
+    <!-- build:js assets/js/app.min.js -->
+    <!--=== Modernizr Min Js ===-->
+    <script src="assets/js/modernizr.min.js"></script>
+    <!--=== jQuery Min Js ===-->
+    <script src="assets/js/jquery.min.js"></script>
+    <!--=== jQuery Migration Min Js ===-->
+    <script src="assets/js/jquery-migrate.min.js"></script>
+    <!--=== Popper Min Js ===-->
+    <script src="assets/js/popper.min.js"></script>
+    <!--=== Bootstrap Min Js ===-->
+    <script src="assets/js/bootstrap.min.js"></script>
+    <!--=== Select2 Min Js ===-->
+    <script src="assets/js/select2.full.min.js"></script>
+    <!--=== Data Table Min Js ===-->
+    <script src="assets/js/datatables.min.js"></script>
+    <!--=== ChartJS Min Js ===-->
+    <script src="assets/js/chart.min.js"></script>
+    <!--=== jQuery Vector Map Min Js ===-->
+    <script src="assets/js/jquery.vmap.min.js"></script>
+    <!--=== jQuery Vector World Min Js ===-->
+    <script src="assets/js/jquery.vmap.world.js"></script>
+
+    <!--=== APP Js ===-->
+    <script src="assets/js/app.js"></script>
+    <!--=== Active Js ===-->
+    <script src="assets/js/active.js"></script>
+
+    <!-- endbuild -->
+    <script src="assets/js/load-booking.js"></script>
+</body>
+
+</html>

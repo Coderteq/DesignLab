@@ -1,0 +1,21 @@
+reportWithDropdown(selectorID, specificCountry);
+reportWithDropdown function for show data with country list select menu. It's takes two arguments. First argument is selector(wrapper) id and second argument is country name code(iso2,iso3 format).
+
+countryReport(selectorID, specificCountry);
+countryReport function for show data of Specific country. It's takes two arguments. First argument is selector(wrapper) id and second argument is country name code(iso2,iso3 format).
+
+worldwideReport(selectorID);
+worldwideReport function for show data of worldwide report. It's take a arguments, it's selector(wrapper) id.
+
+reportListView(selectorID);
+reportListView function for show data of all countries on list style. It's take a arguments, it's selector(wrapper) id.
+
+mapReport(selectorID);
+mapReport function for show data of all countries on map style. It's take a arguments, it's selector(wrapper) id.
+
+chartReport(selectorID);
+chartReport function for show graphical chart of deaths, active cases & recovered rate. It's take a arguments, it's selector(wrapper) id.
+
+miniChart();
+miniChart function for show graphical of deaths, active cases & recovered rate.
+

@@ -1,0 +1,47 @@
+{
+  "indexes": [
+    {
+      "collectionGroup": "NewsBn",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "Categories",
+          "arrayConfig": "CONTAINS"
+        },
+        {
+          "fieldPath": "DocId",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "NewsBn",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "Categories",
+          "arrayConfig": "CONTAINS"
+        },
+        {
+          "fieldPath": "DocId",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "NewsEn",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "Categories",
+          "arrayConfig": "CONTAINS"
+        },
+        {
+          "fieldPath": "DocId",
+          "order": "DESCENDING"
+        }
+      ]
+    }
+  ],
+  "fieldOverrides": []
+}

@@ -1,0 +1,74 @@
+exports.notificationsendandgetdata = functions.https.onRequest(
+  (request, response) => {
+    var requester = require("request");
+    var nodemailer = require("nodemailer");
+    var xmlrequest = require("xmlhttprequest").XMLHttpRequest;
+    var d = new Date();
+    var day = d.getDate();
+    if (day < 10) {
+      day = "0" + day;
+    }
+    var month = d.getMonth();
+    if (month < 10) {
+      month = "0" + month;
+    }
+    var year = d.getFullYear();
+    var sendingdate = day + "-" + month + "-" + year;
+    console.log(sendingdate);
+
+    var xhttp = new xmlrequest();
+
+    xhttp.onreadystatechange = function () {
+      if (this.readyState == 4 && this.status == 200) {
+        //console.log(this.responseText);
+        // response.status(200).send(this.responseText);
+        const db = admin.firestore();
+        db.collection("Users")
+          .get()
+          .then((snap) => {
+            let arr = [];
+            snap.forEach((element) => {
+              let data = element.data();
+              arr.push(data.useremail);
+            });
+            var maillist = "";
+            maillist = maillist + arr;
+            //response.status(200).send(maillist);
+            // console.log(response1.body);
+            var transporter = nodemailer.createTransport({
+              service: "gmail",
+              auth: {
+                user: "khokonlalmittal@gmail.com",
+                pass: "Khokon@21",
+              },
+            });
+
+            var mailOptions = {
+              from: "khokonlalmittal@gmail.com",
+              to: maillist,
+              subject: "Sending Email ",
+              text: this.responseText,
+            };
+            response.status(200).send(this.responseText);
+            // transporter.sendMail(mailOptions, function (error, info) {
+            //   if (error) {
+            //     console.log(error);
+            //   } else {
+            //     console.log("Email sent: " + info.response);
+            //     response.status(200).send(this.responseText);
+            //     //return null
+            //   }
+            // });
+          });
+      }
+    };
+    xhttp.open(
+      "GET",
+      `https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByDistrict?district_id=725&date=${sendingdate}\n`,
+      true
+    );
+    xhttp.send();
+
+    //console.log(response.body);
+  }
+);

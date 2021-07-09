@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Co Care - Coronavirus Stats Dashboard Template</title>
+
+    <!--== Favicon ==-->
+    <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon" />
+
+    <!--== Google Fonts ==-->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;0,900;1,300;1,400&display=swap" rel="stylesheet">
+
+    <!-- build:css assets/css/app.min.css -->
+    <!--== jqvmap Min CSS ==-->
+    <link href="assets/css/jqvmap.min.css" rel="stylesheet" />
+    <!--== ChartJS Min CSS ==-->
+    <link href="assets/css/chart.min.css" rel="stylesheet" />
+    <!--== DataTables Min CSS ==-->
+    <link href="assets/css/datatables.min.css" rel="stylesheet" />
+    <!--== Select2 Min CSS ==-->
+    <link href="assets/css/select2.min.css" rel="stylesheet" />
+    <!--== Bootstrap Min CSS ==-->
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!--== Main Style CSS ==-->
+    <link href="assets/css/style.css" rel="stylesheet" />
+    <!-- endbuild -->
+    <script src="/__/firebase/7.16.1/firebase-app.js"></script>
+    <script src="/__/firebase/7.16.1/firebase-auth.js"></script>
+    <script src="/__/firebase/7.16.1/firebase-firestore.js"></script>
+    <script src="/__/firebase/7.16.1/firebase-functions.js"></script>
+    <script src="/__/firebase/7.16.1/firebase-analytics.js"></script>
+    <script src="/__/firebase/7.16.1/firebase-database.js"></script>
+    <script src="/__/firebase/7.16.1/firebase-storage.js"></script>
+    <script src="/__/firebase/init.js"></script>
+
+    <script src="/__/firebase/7.16.1/firebase-messaging.js"></script>
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="//oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+    <!--== Start Header Wrapper ==-->
+    <header class="header-wrapper">
+        <div class="container">
+            <div class="row justify-content-between align-items-center">
+                <div class="col-lg-4">
+                    <div class="logo-wrap">
+                        <a href="index.html"><img src="assets/img/logo.png" alt="logo" /></a>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4">
+
+                </div>
+
+                <div class="col-md-6 col-lg-4">
+                    <div class="navbar-wrap">
+                        <nav class="menubar">
+                            <ul class="nav">
+                                <li><a href="index.html">Dashboard</a></li>
+
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!--== End Header Wrapper ==-->
+
+    <!--== Start Main Content Wrapper ==-->
+    <main class="main-content-wrapper">
+        <div class="badge-tracker-wrap">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-9 m-auto">
+                        <div class="badge-tracker-item">
+                            <div class="title-top">
+                                <h2>Hospital Status</h2>
+                            </div>
+
+
+                            <div class="list-view table-responsive">
+
+                                <table class="list-view__table display table">
+                                    <thead class="list-view__head">
+                                        <tr>
+                                            <th>Date</th>
+                                            <th>Time</th>
+                                            <th>Vaccines Available</th>
+                                            <th>Action</th>
+
+
+
+
+                                        </tr>
+                                    </thead>
+
+                                    <tbody class="list-view__body">
+                                        <tr>
+                                            <td>10.07.21</td>
+                                            <td>1pm to 5pm</td>
+                                            <td>1936</td>
+                                            <td><a href="" data-toggle="modal" data-target="#editModal">Edit</a></td>
+
+
+
+
+                                        </tr>
+
+
+                                    </tbody>
+                                </table>
+
+
+                            </div>
+
+                            <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#addModal" style="margin-top: 20px;">Add Data</button>
+
+
+                            <!-- Modals -->
+                            <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form>
+                                                <div class="form-group">
+                                                    <label for="date">Date</label>
+                                                    <input type="date" class="form-control" id="date-edit" placeholder="Enter Date">
+
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="timeStart">Available From</label>
+                                                    <input type="time" class="form-control" id="timeStart-edit" placeholder="Enter Time Start">
+
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="timeEnd">Available Till</label>
+                                                    <input type="time" class="form-control" id="timeEnd-edit" placeholder="Enter Time End">
+
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="vaccineNo">Vaccines Available</label>
+                                                    <input type="number" class="form-control" id="vaccineNo-edit" placeholder="vaccine No">
+                                                </div>
+
+                                                
+                                            </form>
+                                            <button type="button" class="btn btn-primary">Save</button>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form>
+                                                <div class="form-group">
+                                                    <label for="date">Date</label>
+                                                    <input type="date" class="form-control" id="date" placeholder="Enter Date">
+
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="timeStart">Available From</label>
+                                                    <input type="time" class="form-control" id="timeStart" placeholder="Enter Time Start">
+
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="timeEnd">Available Till</label>
+                                                    <input type="time" class="form-control" id="timeEnd" placeholder="Enter Time End">
+
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="vaccineNo">Vaccines Available</label>
+                                                    <input type="number" class="form-control" id="vaccineNo" placeholder="vaccine No">
+                                                </div>
+
+                                                <button type="button" onclick="addSlot()" class="btn btn-primary">Save</button>
+                                            </form>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="badge-tracker-item">
+                            <div class="title-top">
+                                <h2>Patients</h2>
+                            </div>
+                        </div>
+
+                        <div class="list-view table-responsive">
+
+                            <!-- <table class="list-view__table display table">
+                                <thead class="list-view__head">
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Age</th>
+                                        <th>Date</th>
+                                        <th>Time</th>
+                                        <th>Contact</th>
+                                        <th>Status</th>
+
+
+                                    </tr>
+                                </thead>
+
+                                <tbody class="list-view__body">
+                                    <tr>
+                                        <td>Suvrodeepta Bhattacharya</td>
+                                        <td>21</td>
+                                        <td>10.07.21</td>
+                                        <td>3pm - 4pm</td>
+                                        <td>+919836909826</td>
+                                        <td>Vaccinated</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Supravo Jana</td>
+                                        <td>22</td>
+                                        <td>11.07.21</td>
+                                        <td>4pm - 5pm</td>
+                                        <td>+919836909826</td>
+                                        <td>Vaccinated</td>
+                                    </tr>
+
+
+                                </tbody>
+                            </table> -->
+                        </div>
+
+
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal -->
+
+    </main>
+    <!--== End Main Content Wrapper ==-->
+
+
+    <!--=======================Javascript============================-->
+    <!-- build:js assets/js/app.min.js -->
+    <!--=== Modernizr Min Js ===-->
+    <script src="assets/js/modernizr.min.js"></script>
+    <!--=== jQuery Min Js ===-->
+    <script src="assets/js/jquery.min.js"></script>
+    <!--=== jQuery Migration Min Js ===-->
+    <script src="assets/js/jquery-migrate.min.js"></script>
+    <!--=== Popper Min Js ===-->
+    <script src="assets/js/popper.min.js"></script>
+    <!--=== Bootstrap Min Js ===-->
+    <script src="assets/js/bootstrap.min.js"></script>
+    <!--=== Select2 Min Js ===-->
+    <script src="assets/js/select2.full.min.js"></script>
+    <!--=== Data Table Min Js ===-->
+    <script src="assets/js/datatables.min.js"></script>
+    <!--=== ChartJS Min Js ===-->
+    <script src="assets/js/chart.min.js"></script>
+    <!--=== jQuery Vector Map Min Js ===-->
+    <script src="assets/js/jquery.vmap.min.js"></script>
+    <!--=== jQuery Vector World Min Js ===-->
+    <script src="assets/js/jquery.vmap.world.js"></script>
+
+    <!--=== APP Js ===-->
+    <script src="assets/js/app.js"></script>
+    <!--=== Active Js ===-->
+    <script src="assets/js/active.js"></script>
+    <script src="assets/js/load-add-hosp.js"></script>
+
+    <!-- endbuild -->
+</body>
+
+</html>
